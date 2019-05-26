@@ -7,7 +7,8 @@ import static view.RestaurantFormView.*;
 public class Application {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Restaurant.open(limitTime(scanner), countOfCook(scanner), countOfCleaningStaff(scanner), countOfTable(scanner));
+        Restaurant restaurant = new Restaurant();
+        restaurant.open(limitTime(scanner), countOfCook(scanner), countOfCleaningStaff(scanner), countOfTable(scanner));
         scanner.close();
     }
 }

@@ -16,7 +16,7 @@ public class RestaurantFormView extends Exception {
         if (MIN > limitTime) {
             throw new IllegalArgumentException("측정 시간은 " + MIN + "이상의 값을 입력해야 합니다.");
         }
-        return limitTime;
+        return limitTime * 60; // 시 -> 분 단위로 변환
     }
 
     public static int countOfCook(Scanner scanner) {

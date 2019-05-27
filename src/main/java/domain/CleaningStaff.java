@@ -4,7 +4,7 @@ public class CleaningStaff extends Employee {
     private Status status;
 
     public CleaningStaff() {
-        super(3);
+        super(Constraint.WORKING_MINUTE_TIME_OF_CLEANING_STAFF);
     }
 
     // TODO : status Enum 구현

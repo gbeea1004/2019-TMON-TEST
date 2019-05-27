@@ -11,10 +11,22 @@ public class WaitingRoom {
         waitingRoom.add(customer);
     }
 
-    public Customer sitTableOrLeave(Tables tables) {
+    public void sitTableOrLeave(Tables tables) {
         if (waitingRoom.isEmpty()) {
-            return null;
+            return;
         }
-        return waitingRoom.poll();
+
+        for (Table table : tables.getTables()) {
+            if (table.canSit()) {
+                while (!waitingRoom.isEmpty()) {
+                    if (waitingRoom.peek().isOverWaiting()) {
+                        waitingRoom.poll();
+                        continue;
+                    }
+                    table.sitCustomer(waitingRoom.poll());
+                    break;
+                }
+            }
+        }
     }
 }

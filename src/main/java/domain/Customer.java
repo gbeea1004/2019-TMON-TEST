@@ -1,11 +1,10 @@
 package domain;
 
 public class Customer {
-    private final int MAX_WAITING_MINUTE_TIME = 3600;
     private int waitingMinuteTime;
 
     public boolean isOverWaiting() {
-        if (waitingMinuteTime > MAX_WAITING_MINUTE_TIME) {
+        if (waitingMinuteTime > Constraint.MAX_WAITING_MINUTE_TIME_OF_CUSTOMER) {
             return true;
         }
         return false;

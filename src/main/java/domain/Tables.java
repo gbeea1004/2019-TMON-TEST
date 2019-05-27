@@ -12,12 +12,16 @@ public class Tables {
         }
     }
 
-    public Table getSitOn() {
+    public Table sitOnTable() {
         for (Table table : tables) {
             if (table.canSit()) {
                 return table;
             }
         }
         return null;
+    }
+
+    public List<Table> getTables() {
+        return tables;
     }
 }

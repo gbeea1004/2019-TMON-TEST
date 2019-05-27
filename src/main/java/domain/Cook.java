@@ -4,7 +4,7 @@ public class Cook extends Employee {
     private Status status;
 
     public Cook() {
-        super(3);
+        super(Constraint.WORKING_MINUTE_TIME_OF_COOK);
     }
 
     // TODO : status Enum 구현

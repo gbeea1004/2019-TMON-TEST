@@ -15,9 +15,7 @@ public class Restaurant {
     }
 
     public int open(int limitTime, int countOfCook, int countOfCleaningStaff, int countOfTable) {
-        tables = new Tables(countOfTable);
-        cooks = new Cooks(countOfCook);
-        cleaningStaffs = new CleaningStaffs(countOfCleaningStaff);
+        init(countOfCook, countOfCleaningStaff, countOfTable);
 
         while (currentMinuteTime < limitTime) {
             currentMinuteTime++;
@@ -26,7 +24,16 @@ public class Restaurant {
                     waitingRoom.addCustomer(new Customer());
                 }
             }
+            waitingRoom.sitTableOrLeave(tables);
+
+
         }
         return 1;
+    }
+
+    private void init(int countOfCook, int countOfCleaningStaff, int countOfTable) {
+        tables = new Tables(countOfTable);
+        cooks = new Cooks(countOfCook);
+        cleaningStaffs = new CleaningStaffs(countOfCleaningStaff);
     }
 }

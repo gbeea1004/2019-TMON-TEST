@@ -15,18 +15,21 @@ public class WaitingRoom {
         if (waitingRoom.isEmpty()) {
             return;
         }
-
         for (Table table : tables.getTables()) {
             if (table.canSit()) {
-                while (!waitingRoom.isEmpty()) {
-                    if (waitingRoom.peek().isOverWaiting()) {
-                        waitingRoom.poll();
-                        continue;
-                    }
-                    table.sitCustomer(waitingRoom.poll());
-                    break;
-                }
+                confirmCustomerStatus(table);
             }
+        }
+    }
+
+    private void confirmCustomerStatus(Table table) {
+        while (!waitingRoom.isEmpty()) {
+            if (waitingRoom.peek().isOverWaiting()) {
+                waitingRoom.poll();
+                continue;
+            }
+            table.sitCustomer(waitingRoom.poll());
+            break;
         }
     }
 }

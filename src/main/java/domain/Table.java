@@ -21,10 +21,7 @@ public class Table {
     }
 
     public boolean canSit() {
-        if (sitCustomer == null) {
-            return true;
-        }
-        return false;
+        return sitCustomer == null;
     }
 
     public void addOneMinute() {

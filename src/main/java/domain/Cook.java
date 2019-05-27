@@ -9,10 +9,7 @@ public class Cook {
     }
 
     public boolean isWorking() {
-        if (target == null) {
-            return false;
-        }
-        return true;
+        return target != null;
     }
 
     public void setTarget(Customer customer) {

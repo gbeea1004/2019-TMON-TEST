@@ -12,12 +12,12 @@ public class Tables {
         }
     }
 
-    public boolean isSitOn() {
+    public Table getSitOn() {
         for (Table table : tables) {
             if (table.canSit()) {
-                return true;
+                return table;
             }
         }
-        return false;
+        return null;
     }
 }

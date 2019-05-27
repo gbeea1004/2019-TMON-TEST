@@ -11,7 +11,10 @@ public class WaitingRoom {
         waitingRoom.add(customer);
     }
 
-    public void leaveRoom() {
-        waitingRoom.poll();
+    public Customer sitTableOrLeave(Tables tables) {
+        if (waitingRoom.isEmpty()) {
+            return null;
+        }
+        return waitingRoom.poll();
     }
 }

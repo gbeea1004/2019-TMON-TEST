@@ -9,10 +9,7 @@ public class Customer {
     }
 
     public boolean isOverWaiting() {
-        if (waitingMinuteTime > Constraint.MAX_WAITING_MINUTE_TIME_OF_CUSTOMER) {
-            return true;
-        }
-        return false;
+        return waitingMinuteTime > Constraint.MAX_WAITING_MINUTE_TIME_OF_CUSTOMER;
     }
 
     public void eatingStart() {
@@ -20,9 +17,6 @@ public class Customer {
     }
 
     public boolean isEating() {
-        if (status == Status.WORK) {
-            return true;
-        }
-        return false;
+        return status == Status.WORK;
     }
 }

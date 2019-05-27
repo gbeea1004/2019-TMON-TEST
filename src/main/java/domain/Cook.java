@@ -1,14 +1,39 @@
 package domain;
 
-public class Cook extends Employee {
-    private Status status;
+public class Cook {
+    private Customer target;
+    private int currentCookingTime;
 
     public Cook() {
-        super(Constraint.WORKING_MINUTE_TIME_OF_COOK);
+        this.currentCookingTime = 0;
     }
 
-    // TODO : status Enum 구현
     public boolean isWorking() {
-        return false;
+        if (target == null) {
+            return false;
+        }
+        return true;
+    }
+
+    public void setTarget(Customer customer) {
+        if (isWorking()) {
+            throw new IllegalArgumentException("요리사가 이미 일하고 있습니다.");
+        }
+        this.target = customer;
+    }
+
+    public void finishCooking() {
+        this.target = null;
+    }
+
+    public void work() {
+        if (!isWorking()) {
+            throw new IllegalArgumentException("지정받은 손님이 없습니다.");
+        }
+        if (currentCookingTime == Constraint.WORKING_MINUTE_TIME_OF_COOK) {
+            target.eatingStart();
+            return;
+        }
+        currentCookingTime++;
     }
 }

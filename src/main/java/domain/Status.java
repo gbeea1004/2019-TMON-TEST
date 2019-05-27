@@ -1,6 +1,5 @@
 package domain;
 
-public class Status {
-    enum status {WAIT, WORKING}
-
+public enum Status {
+    WAIT, WORK, FINISH
 }

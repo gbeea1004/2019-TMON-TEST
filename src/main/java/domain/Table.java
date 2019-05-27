@@ -26,4 +26,10 @@ public class Table {
         }
         return false;
     }
+
+    public void addOneMinute() {
+        if (sitCustomer.isEating()) {
+            this.currentUsingTime++;
+        }
+    }
 }

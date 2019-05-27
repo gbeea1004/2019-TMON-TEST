@@ -19,16 +19,25 @@ public class Restaurant {
 
         while (currentMinuteTime < limitTime) {
             currentMinuteTime++;
-            if (currentMinuteTime % 10 == 0) {
-                for (int i = 0; i < 7; i++) {
-                    waitingRoom.addCustomer(new Customer());
-                }
-            }
+            checkEnterCustomers();
             waitingRoom.sitTableOrLeave(tables);
 
+            tables.addOneMinute();
 
         }
         return 1;
+    }
+
+    private void checkEnterCustomers() {
+        if (currentMinuteTime % 10 == 0) {
+            enterCustomer();
+        }
+    }
+
+    private void enterCustomer() {
+        for (int i = 0; i < 7; i++) {
+            waitingRoom.addCustomer(new Customer());
+        }
     }
 
     private void init(int countOfCook, int countOfCleaningStaff, int countOfTable) {

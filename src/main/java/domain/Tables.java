@@ -24,4 +24,10 @@ public class Tables {
     public List<Table> getTables() {
         return tables;
     }
+
+    public void addOneMinute() {
+        for (Table table : tables) {
+            table.addOneMinute();
+        }
+    }
 }

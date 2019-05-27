@@ -16,9 +16,13 @@ public class WaitingRoom {
             return;
         }
         for (Table table : tables.getTables()) {
-            if (table.canSit()) {
-                confirmCustomerStatus(table);
-            }
+            checkTableStatus(table);
+        }
+    }
+
+    private void checkTableStatus(Table table) {
+        if (table.canSit()) {
+            confirmCustomerStatus(table);
         }
     }
 

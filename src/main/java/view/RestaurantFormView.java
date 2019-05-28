@@ -3,20 +3,15 @@ package view;
 import domain.CleaningStaffs;
 import domain.Cooks;
 import domain.Tables;
+import domain.MeasureTime;
 import utils.Conversion;
 
 import java.util.Scanner;
 
-import static domain.Constraint.MIN;
-
 public class RestaurantFormView {
-    public static int inputMeasuringTime(Scanner scanner) {
+    public static MeasureTime inputMeasuringTime(Scanner scanner) {
         System.out.print("측정시간 : ");
-        int limitTime = Conversion.toInt(scanner.nextLine());
-        if (MIN > limitTime) {
-            throw new IllegalArgumentException("측정 시간은 " + MIN + "이상의 값을 입력해야 합니다.");
-        }
-        return limitTime * 60; // 시 -> 분 단위로 변환
+        return new MeasureTime(Conversion.toInt(scanner.nextLine()));
     }
 
     public static Cooks inputCountOfCook(Scanner scanner) {

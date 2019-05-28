@@ -2,6 +2,7 @@ package domain;
 
 public class Table {
     private Customer sitCustomer;
+    private Cook cook;
     private int currentUsingTime;
 
     public void sitCustomer(Customer customer) {

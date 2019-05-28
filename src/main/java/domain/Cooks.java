@@ -18,12 +18,12 @@ public class Cooks {
         }
     }
 
-    public boolean isWorking() {
+    public Cook findWaitCook() {
         for (Cook cook : cooks) {
-            if (cook.isWorking()) {
-                return true;
+            if (!cook.isWorking()) {
+                return cook;
             }
         }
-        return false;
+        return null;
     }
 }

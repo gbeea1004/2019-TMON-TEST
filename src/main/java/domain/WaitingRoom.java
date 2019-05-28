@@ -12,11 +12,10 @@ public class WaitingRoom {
     }
 
     public void sitTableOrLeave(Tables tables) {
-        if (waitingRoom.isEmpty()) {
-            return;
-        }
-        for (Table table : tables.getTables()) {
-            checkTableStatus(table);
+        if (!waitingRoom.isEmpty()) {
+            for (Table table : tables.getTables()) {
+                checkTableStatus(table);
+            }
         }
     }
 

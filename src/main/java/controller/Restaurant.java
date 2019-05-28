@@ -3,39 +3,48 @@ package controller;
 import domain.*;
 
 public class Restaurant {
-    private int currentMinuteTime;
+    private MeasureTime measureTime;
     private WaitingRoom waitingRoom;
     private Tables tables;
     private Cooks cooks;
     private CleaningStaffs cleaningStaffs;
 
-    public Restaurant(Cooks cooks, CleaningStaffs cleaningStaffs, Tables tables) {
-        this.currentMinuteTime = -1;
+    public Restaurant(MeasureTime measureTime, Cooks cooks, CleaningStaffs cleaningStaffs, Tables tables) {
+        this.measureTime = measureTime;
         this.waitingRoom = new WaitingRoom();
         this.cooks = cooks;
         this.cleaningStaffs = cleaningStaffs;
         this.tables = tables;
     }
 
-    public int open(int limitTime) {
-        while (currentMinuteTime < limitTime) {
-            currentMinuteTime++;
-            checkEnterCustomers();
-            waitingRoom.sitTableOrLeave(tables);
+    public int open() {
+        int numberOfCustomer = 0;
+        while (measureTime.isOpening()) {
+            measureTime.addOneMinute();
+            visitCustomers();
+
+            while (true) {
+                waitingRoom.sitTableOrLeave(tables);
+                Cook waitCook = cooks.findWaitCook();
+                if (waitCook == null) {
+                    break;
+                }
+                tables.sitOnTable();
+            }
 
             tables.addOneMinute();
 
         }
-        return 1;
+        return numberOfCustomer;
     }
 
-    private void checkEnterCustomers() {
-        if (currentMinuteTime % 10 == 0) {
-            enterCustomer();
+    private void visitCustomers() {
+        if (measureTime.isCustomerEntryTime()) {
+            enterWaitingRoom();
         }
     }
 
-    private void enterCustomer() {
+    private void enterWaitingRoom() {
         for (int i = 0; i < 7; i++) {
             waitingRoom.addCustomer(new Customer());
         }

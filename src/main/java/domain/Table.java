@@ -20,7 +20,7 @@ public class Table {
         currentUsingTime = 0;
     }
 
-    public boolean canSit() {
+    public boolean isSeat() {
         return sitCustomer == null;
     }
 

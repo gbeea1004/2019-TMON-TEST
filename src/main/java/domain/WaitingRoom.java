@@ -21,7 +21,7 @@ public class WaitingRoom {
     }
 
     private void checkTableStatus(Table table) {
-        if (table.canSit()) {
+        if (table.isSeat()) {
             confirmCustomerStatus(table);
         }
     }

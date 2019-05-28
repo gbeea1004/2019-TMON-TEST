@@ -1,16 +1,16 @@
 package view;
 
+import domain.CleaningStaffs;
+import domain.Cooks;
+import domain.Tables;
 import utils.Conversion;
 
 import java.util.Scanner;
 
-public class RestaurantFormView extends Exception {
-    private static final int MIN = 1;
-    private static final int MAX_COOKS = 100;
-    private static final int MAX_CLEANING_STAFFS = 200;
-    private static final int MAX_TABLES = 10000;
+import static domain.Constraint.MIN;
 
-    public static int limitTime(Scanner scanner) {
+public class RestaurantFormView {
+    public static int inputMeasuringTime(Scanner scanner) {
         System.out.print("측정시간 : ");
         int limitTime = Conversion.toInt(scanner.nextLine());
         if (MIN > limitTime) {
@@ -19,30 +19,18 @@ public class RestaurantFormView extends Exception {
         return limitTime * 60; // 시 -> 분 단위로 변환
     }
 
-    public static int countOfCook(Scanner scanner) {
+    public static Cooks inputCountOfCook(Scanner scanner) {
         System.out.print("요리사 수 : ");
-        int countOfCook = Conversion.toInt(scanner.nextLine());
-        if (MIN > countOfCook || countOfCook > MAX_COOKS) {
-            throw new IllegalArgumentException("요리사의 수는 " + MIN + " ~ " + MAX_COOKS + "명 사이의 값을 입력해야 합니다.");
-        }
-        return countOfCook;
+        return new Cooks(Conversion.toInt(scanner.nextLine()));
     }
 
-    public static int countOfCleaningStaff(Scanner scanner) {
+    public static CleaningStaffs inputCountOfCleaningStaff(Scanner scanner) {
         System.out.print("청소 스탭 수 : ");
-        int countOfCleaningStaff = Conversion.toInt(scanner.nextLine());
-        if (MIN > countOfCleaningStaff || countOfCleaningStaff > MAX_CLEANING_STAFFS) {
-            throw new IllegalArgumentException("청소 스탭의 수는 " + MIN + " ~ " + MAX_CLEANING_STAFFS + "명 사이의 값을 입력해야 합니다.");
-        }
-        return countOfCleaningStaff;
+        return new CleaningStaffs(Conversion.toInt(scanner.nextLine()));
     }
 
-    public static int countOfTable(Scanner scanner) {
+    public static Tables inputCountOfTable(Scanner scanner) {
         System.out.print("테이블 수 : ");
-        int countOfTable = Conversion.toInt(scanner.nextLine());
-        if (MIN > countOfTable || countOfTable > MAX_TABLES) {
-            throw new IllegalArgumentException("테이블의 수는 " + MIN + " ~ " + MAX_TABLES + "명 사이의 값을 입력해야 합니다.");
-        }
-        return countOfTable;
+        return new Tables(Conversion.toInt(scanner.nextLine()));
     }
 }

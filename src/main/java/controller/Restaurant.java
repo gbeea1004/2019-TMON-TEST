@@ -9,14 +9,15 @@ public class Restaurant {
     private Cooks cooks;
     private CleaningStaffs cleaningStaffs;
 
-    public Restaurant() {
+    public Restaurant(Cooks cooks, CleaningStaffs cleaningStaffs, Tables tables) {
         this.currentMinuteTime = -1;
         this.waitingRoom = new WaitingRoom();
+        this.cooks = cooks;
+        this.cleaningStaffs = cleaningStaffs;
+        this.tables = tables;
     }
 
-    public int open(int limitTime, int countOfCook, int countOfCleaningStaff, int countOfTable) {
-        init(countOfCook, countOfCleaningStaff, countOfTable);
-
+    public int open(int limitTime) {
         while (currentMinuteTime < limitTime) {
             currentMinuteTime++;
             checkEnterCustomers();
@@ -38,11 +39,5 @@ public class Restaurant {
         for (int i = 0; i < 7; i++) {
             waitingRoom.addCustomer(new Customer());
         }
-    }
-
-    private void init(int countOfCook, int countOfCleaningStaff, int countOfTable) {
-        tables = new Tables(countOfTable);
-        cooks = new Cooks(countOfCook);
-        cleaningStaffs = new CleaningStaffs(countOfCleaningStaff);
     }
 }

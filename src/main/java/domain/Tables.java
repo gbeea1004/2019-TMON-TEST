@@ -2,6 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static domain.Constraint.MAX_TABLES;
 import static domain.Constraint.MIN;
@@ -35,5 +36,9 @@ public class Tables {
         for (Table table : tables) {
             table.addOneMinute();
         }
+    }
+
+    public List<Table> tablesOfSitGuestAndNoCook() {
+        return tables.stream().filter(g -> !g.isSeat()).filter(Table::isNotAssignedCook).collect(Collectors.toList());
     }
 }

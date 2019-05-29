@@ -2,7 +2,7 @@ package domain;
 
 import org.junit.Test;
 
-public class CleaningStaffTest {
+public class CleanerTest {
     @Test
     public void 손님이_나가면_청소_시작() {
 

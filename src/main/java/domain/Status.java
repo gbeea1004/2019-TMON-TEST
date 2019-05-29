@@ -1,5 +1,5 @@
 package domain;
 
 public enum Status {
-    WAIT, WORK, FINISH
+    WAIT, WORK, EATING
 }

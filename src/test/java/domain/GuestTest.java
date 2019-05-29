@@ -2,7 +2,7 @@ package domain;
 
 import org.junit.Test;
 
-public class CustomerTest {
+public class GuestTest {
     @Test
     public void 손님이_입장했는데_테이블_공간부족으로_대기() {
 

@@ -1,6 +1,6 @@
 package view;
 
-import domain.CleaningStaffs;
+import domain.Cleaners;
 import domain.Cooks;
 import domain.Tables;
 import domain.MeasureTime;
@@ -19,9 +19,9 @@ public class RestaurantFormView {
         return new Cooks(Conversion.toInt(scanner.nextLine()));
     }
 
-    public static CleaningStaffs inputCountOfCleaningStaff(Scanner scanner) {
+    public static Cleaners inputCountOfCleaningStaff(Scanner scanner) {
         System.out.print("청소 스탭 수 : ");
-        return new CleaningStaffs(Conversion.toInt(scanner.nextLine()));
+        return new Cleaners(Conversion.toInt(scanner.nextLine()));
     }
 
     public static Tables inputCountOfTable(Scanner scanner) {

@@ -1,13 +1,17 @@
 package domain;
 
 public class Table {
-    private Customer sitCustomer;
+    private Guest sitGuest;
     private Cook cook;
     private int currentUsingTime;
 
-    public void sitCustomer(Customer customer) {
-        this.sitCustomer = customer;
+    public void sitGuest(Guest guest) {
+        this.sitGuest = guest;
         currentUsingTime = 0;
+    }
+
+    public void setCook(Cook cook) {
+        this.cook = cook;
     }
 
     public void finishEating() {
@@ -17,17 +21,21 @@ public class Table {
     }
 
     private void leaveCustomer() {
-        this.sitCustomer = null;
+        this.sitGuest = null;
         currentUsingTime = 0;
     }
 
     public boolean isSeat() {
-        return sitCustomer == null;
+        return sitGuest == null;
     }
 
     public void addOneMinute() {
-        if (sitCustomer.isEating()) {
-            this.currentUsingTime++;
+        if (sitGuest != null) {
+            currentUsingTime++;
         }
+    }
+
+    public boolean isNotAssignedCook() {
+        return cook == null;
     }
 }

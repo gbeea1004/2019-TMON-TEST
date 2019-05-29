@@ -18,7 +18,20 @@ public class TableTest {
         Table table = tables.sitOnTable();
         assertThat(table).isNotNull();
 
-        table.sitCustomer(new Customer());
+        table.sitGuest(new Guest());
         assertThat(tables.sitOnTable()).isNull();
+    }
+
+    @Test
+    public void 손님이_없는_테이블들() {
+        Tables tables = new Tables(3);
+        assertThat(tables.tablesOfSitGuestAndNoCook().size() == 0).isTrue();
+    }
+
+    @Test
+    public void 손님이_있는_테이블들() {
+        Tables tables = new Tables(3);
+        tables.getTables().get(0).sitGuest(new Guest());
+        assertThat(tables.tablesOfSitGuestAndNoCook().size() == 1).isTrue();
     }
 }

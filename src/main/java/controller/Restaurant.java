@@ -2,18 +2,20 @@ package controller;
 
 import domain.*;
 
+import java.util.List;
+
 public class Restaurant {
     private MeasureTime measureTime;
     private WaitingRoom waitingRoom;
     private Tables tables;
     private Cooks cooks;
-    private CleaningStaffs cleaningStaffs;
+    private Cleaners cleaners;
 
-    public Restaurant(MeasureTime measureTime, Cooks cooks, CleaningStaffs cleaningStaffs, Tables tables) {
+    public Restaurant(MeasureTime measureTime, Cooks cooks, Cleaners cleaners, Tables tables) {
         this.measureTime = measureTime;
         this.waitingRoom = new WaitingRoom();
         this.cooks = cooks;
-        this.cleaningStaffs = cleaningStaffs;
+        this.cleaners = cleaners;
         this.tables = tables;
     }
 
@@ -21,24 +23,45 @@ public class Restaurant {
         int numberOfCustomer = 0;
         while (measureTime.isOpening()) {
             measureTime.addOneMinute();
-            visitCustomers();
-
+            visitGuests();
             while (true) {
-                waitingRoom.sitTableOrLeave(tables);
+                Table maybeTable = tables.sitOnTable();
+                if (maybeTable == null) {
+                    break;
+                }
+
+                if (waitingRoom.isGuest()) {
+                    maybeTable.sitGuest(waitingRoom.moveGuest());
+                } else {
+                    break;
+                }
+            }
+
+            // 테이블에 앉아있는 손님에게 요리사 배정
+            List<Table> tablesOfSitGuestAndNoCook = tables.tablesOfSitGuestAndNoCook();
+            for (Table table : tablesOfSitGuestAndNoCook) {
                 Cook waitCook = cooks.findWaitCook();
                 if (waitCook == null) {
                     break;
                 }
-                tables.sitOnTable();
+                table.setCook(waitCook);
             }
 
-            tables.addOneMinute();
+            // TODO : 손님이 테이블에 앉으면 요리사는 바로 요리를 한다. (소요시간 4분)
 
+            // TODO : 손님은 식사를 한다. (소요시간 11분)
+
+            // TODO : 손님이 나가면 청소 스텝은 테이블을 정리합니다. (소요시간 3분)
+
+            // TODO : 테이블 정리가 완료된 직후 다시 테이블을 사용할 수 있다.
+
+            waitingRoom.addwaitingMinuteTime(); // 대기하는 사람들 1초 추가
+            tables.addOneMinute();
         }
         return numberOfCustomer;
     }
 
-    private void visitCustomers() {
+    private void visitGuests() {
         if (measureTime.isCustomerEntryTime()) {
             enterWaitingRoom();
         }
@@ -46,7 +69,7 @@ public class Restaurant {
 
     private void enterWaitingRoom() {
         for (int i = 0; i < 7; i++) {
-            waitingRoom.addCustomer(new Customer());
+            waitingRoom.addGuest(new Guest());
         }
     }
 }

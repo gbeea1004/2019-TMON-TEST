@@ -6,12 +6,17 @@ public class Person implements WhatNaming {
     int currentActingTime;
 
     Person(int actingMaxTime) {
-        status = Status.WAIT;
-        currentActingTime = 0;
+        init();
         this.actingMaxTime = actingMaxTime;
     }
 
+    private void init() {
+        status = Status.WAIT;
+        currentActingTime = 0;
+    }
+
     public void act() {
+        currentActingTime = 0;
         status = Status.ACT;
     }
 
@@ -21,8 +26,7 @@ public class Person implements WhatNaming {
 
     public boolean isFinish() {
         if (currentActingTime > actingMaxTime) {
-            status = Status.WAIT;
-            currentActingTime = 0;
+            init();
             return true;
         }
         return false;

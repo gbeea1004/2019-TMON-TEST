@@ -6,6 +6,4 @@ public class Cook extends Person {
     Cook() {
         super(COOKING_TIME);
     }
-
-
 }

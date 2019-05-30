@@ -9,6 +9,6 @@ public class Guest extends Person {
     }
 
     public boolean isOverWaiting() {
-        return currentActingTime > MAX_WAITING_TIME;
+        return status == Status.WAIT && spendTime > MAX_WAITING_TIME;
     }
 }

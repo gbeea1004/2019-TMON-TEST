@@ -1,22 +1,22 @@
 package domain;
 
 public class Person implements WhatNaming {
-    final int actingMaxTime;
+    final int MAX_SPEND_TIME;
     Status status;
-    int currentActingTime;
+    int spendTime;
 
-    Person(int actingMaxTime) {
+    Person(int MAX_SPEND_TIME) {
         init();
-        this.actingMaxTime = actingMaxTime;
+        this.MAX_SPEND_TIME = MAX_SPEND_TIME;
     }
 
     private void init() {
         status = Status.WAIT;
-        currentActingTime = 0;
+        spendTime = 0;
     }
 
     public void act() {
-        currentActingTime = 0;
+        spendTime = 0;
         status = Status.ACT;
     }
 
@@ -25,7 +25,7 @@ public class Person implements WhatNaming {
     }
 
     public boolean isFinish() {
-        if (currentActingTime > actingMaxTime) {
+        if (spendTime > MAX_SPEND_TIME) {
             init();
             return true;
         }
@@ -34,6 +34,6 @@ public class Person implements WhatNaming {
 
     @Override
     public void addOneMinute() {
-        currentActingTime++;
+        spendTime++;
     }
 }

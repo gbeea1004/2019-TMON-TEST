@@ -1,13 +1,11 @@
 package domain;
 
-public class Table implements WhatNaming {
+public class Table {
     private Guest sitGuest;
     private Cook cook;
-    private int currentUsingTime;
 
     public void sitGuest(Guest guest) {
         this.sitGuest = guest;
-        currentUsingTime = 0;
     }
 
     public void setCook(Cook cook) {
@@ -15,14 +13,13 @@ public class Table implements WhatNaming {
     }
 
     public void finishEating() {
-        if (currentUsingTime > Constraint.MEAL_MINUTE_TIME_OF_CUSTOMER) {
+        if (sitGuest.isFinish()) {
             leaveCustomer();
         }
     }
 
     private void leaveCustomer() {
         this.sitGuest = null;
-        currentUsingTime = 0;
     }
 
     public boolean isSeat() {
@@ -31,12 +28,5 @@ public class Table implements WhatNaming {
 
     public boolean isNotAssignedCook() {
         return cook == null;
-    }
-
-    @Override
-    public void addOneMinute() {
-        if (sitGuest != null) {
-            currentUsingTime++;
-        }
     }
 }

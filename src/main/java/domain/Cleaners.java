@@ -20,7 +20,7 @@ public class Cleaners {
 
     public boolean isWorking() {
         for (Cleaner cleaner : cleaners) {
-            if (cleaner.isWorking()) {
+            if (cleaner.isActing()) {
                 return true;
             }
         }

@@ -30,8 +30,8 @@ public class Restaurant {
                     break;
                 }
 
-                if (waitingRoom.isGuest()) {
-                    maybeTable.sitGuest(waitingRoom.moveGuest());
+                if (waitingRoom.hasGuest()) {
+                    maybeTable.sitGuest(waitingRoom.leaveGuest());
                 } else {
                     break;
                 }
@@ -55,7 +55,7 @@ public class Restaurant {
 
             // TODO : 테이블 정리가 완료된 직후 다시 테이블을 사용할 수 있다.
 
-            waitingRoom.addwaitingMinuteTime(); // 대기하는 사람들 1초 추가
+            waitingRoom.addWaitingMinuteTime(); // 대기하는 사람들 1초 추가
             tables.addOneMinute();
         }
         return numberOfCustomer;
@@ -68,7 +68,7 @@ public class Restaurant {
     }
 
     private void enterWaitingRoom() {
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < Constraint.COUNT_OF_VISIT_GUEST; i++) {
             waitingRoom.addGuest(new Guest());
         }
     }

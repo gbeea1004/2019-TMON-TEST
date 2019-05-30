@@ -5,23 +5,23 @@ import java.util.Queue;
 
 // 일급 컬랙션
 public class WaitingRoom {
-    private Queue<Guest> waitingRoom = new LinkedList<>();
+    private Queue<Guest> waitingRooms = new LinkedList<>();
 
     public void addGuest(Guest guest) {
-        waitingRoom.add(guest);
+        waitingRooms.add(guest);
     }
 
-    public void addwaitingMinuteTime() {
-        for (Guest guest : waitingRoom) {
-            guest.addwaitingMinuteTime();
+    public void addWaitingMinuteTime() {
+        for (Guest guest : waitingRooms) {
+            guest.addOneMinute();
         }
     }
 
-    public boolean isGuest() {
-        return !waitingRoom.isEmpty();
+    public boolean hasGuest() {
+        return !waitingRooms.isEmpty();
     }
 
-    public Guest moveGuest() {
-        return waitingRoom.poll();
+    public Guest leaveGuest() {
+        return waitingRooms.poll();
     }
 }

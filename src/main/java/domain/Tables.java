@@ -39,6 +39,9 @@ public class Tables {
     }
 
     public List<Table> tablesOfSitGuestAndNoCook() {
-        return tables.stream().filter(g -> !g.isSeat()).filter(Table::isNotAssignedCook).collect(Collectors.toList());
+        return tables.stream()
+                .filter(t -> !t.isSeat())
+                .filter(Table::isNotAssignedCook)
+                .collect(Collectors.toList());
     }
 }

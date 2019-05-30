@@ -19,6 +19,9 @@ public class Cooks {
     }
 
     public Cook findWaitCook() {
-        return cooks.stream().filter(c -> !c.isWork()).findFirst().orElse(null);
+        return cooks.stream()
+                .filter(c -> !c.isActing())
+                .findFirst()
+                .orElse(null);
     }
 }

@@ -1,6 +1,6 @@
 package domain;
 
-public class Table {
+public class Table implements WhatNaming {
     private Guest sitGuest;
     private Cook cook;
     private int currentUsingTime;
@@ -29,13 +29,14 @@ public class Table {
         return sitGuest == null;
     }
 
+    public boolean isNotAssignedCook() {
+        return cook == null;
+    }
+
+    @Override
     public void addOneMinute() {
         if (sitGuest != null) {
             currentUsingTime++;
         }
-    }
-
-    public boolean isNotAssignedCook() {
-        return cook == null;
     }
 }

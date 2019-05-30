@@ -1,10 +1,5 @@
 package domain;
 
-public class Cleaner {
-    private Status status;
+public class Cleaner extends Person {
 
-    // TODO : status Enum 구현
-    public boolean isWorking() {
-        return false;
-    }
 }

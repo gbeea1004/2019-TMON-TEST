@@ -12,4 +12,6 @@ public class Constraint {
 
     public static final int MAX_WAITING_MINUTE_TIME_OF_CUSTOMER = 3600;
     public static final int MEAL_MINUTE_TIME_OF_CUSTOMER = 11;
+
+    public static final int COUNT_OF_VISIT_GUEST = 7;
 }

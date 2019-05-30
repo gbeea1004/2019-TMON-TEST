@@ -5,7 +5,7 @@ public class Guest extends Person {
     private static final int MEAL_TIME = 11;
     private int waitingMinuteTime;
 
-    Guest() {
+    public Guest() {
         super(MEAL_TIME);
     }
 

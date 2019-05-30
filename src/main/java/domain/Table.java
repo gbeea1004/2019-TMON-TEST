@@ -1,6 +1,6 @@
 package domain;
 
-public class Table {
+public class Table implements WhatNaming {
     private Guest sitGuest;
     private Cook cook;
 
@@ -19,7 +19,7 @@ public class Table {
     }
 
     private void leaveCustomer() {
-        this.sitGuest = null;
+        sitGuest = null;
     }
 
     public boolean isSeat() {
@@ -28,5 +28,31 @@ public class Table {
 
     public boolean isNotAssignedCook() {
         return cook == null;
+    }
+
+    public void startCook() {
+        cook.act();
+    }
+
+    public boolean isWorkingCook() {
+        return cook.isActing();
+    }
+
+    public void giveFood() {
+        if (cook.isFinish()) {
+            sitGuest.act();
+            cook = null;
+        }
+    }
+
+    @Override
+    public void addOneMinute() {
+        if (sitGuest.isActing()) {
+            sitGuest.addOneMinute();
+        }
+
+        if (cook.isActing()) {
+            cook.addOneMinute();
+        }
     }
 }

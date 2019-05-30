@@ -17,8 +17,8 @@ public class WaitingRoom {
         }
     }
 
-    public boolean hasGuest() {
-        return !waitingRooms.isEmpty();
+    public boolean hasNotGuest() {
+        return waitingRooms.isEmpty();
     }
 
     public Guest leaveGuest() {

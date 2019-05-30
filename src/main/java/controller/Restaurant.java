@@ -30,11 +30,10 @@ public class Restaurant {
                     break;
                 }
 
-                if (waitingRoom.hasGuest()) {
-                    maybeTable.sitGuest(waitingRoom.leaveGuest());
-                } else {
+                if (waitingRoom.hasNotGuest()) {
                     break;
                 }
+                maybeTable.sitGuest(waitingRoom.leaveGuest());
             }
 
             // 테이블에 앉아있는 손님에게 요리사 배정
@@ -45,9 +44,11 @@ public class Restaurant {
                     break;
                 }
                 table.setCook(waitCook);
+                table.startCook(); // 손님이 테이블에 앉으면 요리사는 바로 요리를 한다. (소요시간 4분)
             }
 
-            // TODO : 손님이 테이블에 앉으면 요리사는 바로 요리를 한다. (소요시간 4분)
+
+
 
             // TODO : 손님은 식사를 한다. (소요시간 11분)
 

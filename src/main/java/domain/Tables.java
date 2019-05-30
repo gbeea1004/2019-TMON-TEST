@@ -20,12 +20,10 @@ public class Tables {
     }
 
     public Table sitOnTable() {
-        for (Table table : tables) {
-            if (table.isSeat()) {
-                return table;
-            }
-        }
-        return null;
+        return tables.stream()
+                .filter(Table::isSeat)
+                .findFirst()
+                .orElse(null);
     }
 
     public List<Table> getTables() {

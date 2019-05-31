@@ -47,14 +47,34 @@ public class Restaurant {
                 table.startCook(); // 손님이 테이블에 앉으면 요리사는 바로 요리를 한다. (소요시간 4분)
             }
 
+            // 손님은 식사를 한다. (소요시간 11분)
+            for (Table table : tables.getTables()) {
+                table.giveFood();
+            }
 
+            // 먹고 나간 손님
+            for (Table table : tables.getTables()) {
+                if (table.isFinishEating()) {
+                    numberOfCustomer++;
+                }
+            }
 
-
-            // TODO : 손님은 식사를 한다. (소요시간 11분)
-
-            // TODO : 손님이 나가면 청소 스텝은 테이블을 정리합니다. (소요시간 3분)
+            // 손님이 나가면 청소 스텝은 테이블을 정리합니다. (소요시간 3분)
+            for (Table table : tables.getTables()) {
+                if (!table.isClean()) {
+                    Cleaner waitCleaner = cleaners.findWaitCleaner();
+                    if (waitCleaner == null) {
+                        break;
+                    }
+                    table.setCleaner(waitCleaner);
+                    table.startCleaner();
+                }
+            }
 
             // TODO : 테이블 정리가 완료된 직후 다시 테이블을 사용할 수 있다.
+            
+
+
 
             waitingRoom.addWaitingMinuteTime(); // 대기하는 사람들 1초 추가
             tables.addOneMinute();

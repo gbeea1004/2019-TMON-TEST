@@ -22,6 +22,7 @@ public class Tables {
     public Table sitOnTable() {
         return tables.stream()
                 .filter(Table::isSeat)
+                .filter(Table::isClean)
                 .findFirst()
                 .orElse(null);
     }

@@ -10,7 +10,7 @@ public class Person implements WhatNaming {
         this.MAX_SPEND_TIME = MAX_SPEND_TIME;
     }
 
-    private void init() {
+    public void init() {
         status = Status.WAIT;
         spendTime = 0;
     }

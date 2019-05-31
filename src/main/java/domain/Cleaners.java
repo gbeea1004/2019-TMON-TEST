@@ -18,12 +18,10 @@ public class Cleaners {
         }
     }
 
-    public boolean isWorking() {
-        for (Cleaner cleaner : cleaners) {
-            if (cleaner.isActing()) {
-                return true;
-            }
-        }
-        return false;
+    public Cleaner findWaitCleaner() {
+        return cleaners.stream()
+                .filter(c -> !c.isActing())
+                .findFirst()
+                .orElse(null);
     }
 }

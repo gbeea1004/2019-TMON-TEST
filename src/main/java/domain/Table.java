@@ -3,6 +3,8 @@ package domain;
 public class Table implements WhatNaming {
     private Guest sitGuest;
     private Cook cook;
+    private Cleaner cleaner;
+    private boolean isClean = true;
 
     public void sitGuest(Guest guest) {
         this.sitGuest = guest;
@@ -12,10 +14,17 @@ public class Table implements WhatNaming {
         this.cook = cook;
     }
 
-    public void finishEating() {
-        if (sitGuest.isFinish()) {
+    public void setCleaner(Cleaner cleaner) {
+        this.cleaner = cleaner;
+    }
+
+    public boolean isFinishEating() {
+        if (sitGuest.status == Status.ACT && sitGuest.isFinish()) {
             leaveCustomer();
+            isClean = false;
+            return true;
         }
+        return false;
     }
 
     private void leaveCustomer() {
@@ -26,6 +35,10 @@ public class Table implements WhatNaming {
         return sitGuest == null;
     }
 
+    public boolean isClean() {
+        return isClean;
+    }
+
     public boolean isNotAssignedCook() {
         return cook == null;
     }
@@ -34,13 +47,14 @@ public class Table implements WhatNaming {
         cook.act();
     }
 
-    public boolean isWorkingCook() {
-        return cook.isActing();
+    public void startCleaner() {
+        cleaner.act();
     }
 
     public void giveFood() {
-        if (cook.isFinish()) {
+        if (cook.status == Status.ACT && cook.isFinish()) {
             sitGuest.act();
+            cook.init();
             cook = null;
         }
     }
@@ -53,6 +67,10 @@ public class Table implements WhatNaming {
 
         if (cook.isActing()) {
             cook.addOneMinute();
+        }
+
+        if (cleaner.isActing()) {
+            cleaner.addOneMinute();
         }
     }
 }

@@ -40,6 +40,7 @@ public class Tables {
     public List<Table> tablesOfSitGuestAndNoCook() {
         return tables.stream()
                 .filter(t -> !t.isSeat())
+                .filter(Table::isGuestWaitStatus)
                 .filter(Table::isNotAssignedCook)
                 .collect(Collectors.toList());
     }

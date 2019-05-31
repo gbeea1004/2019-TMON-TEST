@@ -19,7 +19,7 @@ public class Table implements WhatNaming {
     }
 
     public boolean isFinishEating() {
-        if (sitGuest.status == Status.ACT && sitGuest.isFinish()) {
+        if (sitGuest != null && sitGuest.status == Status.ACT && sitGuest.isFinish()) {
             leaveCustomer();
             isClean = false;
             return true;
@@ -43,6 +43,10 @@ public class Table implements WhatNaming {
         return cook == null;
     }
 
+    public boolean isGuestWaitStatus() {
+        return sitGuest.status == Status.WAIT;
+    }
+
     public void startCook() {
         cook.act();
     }
@@ -52,7 +56,7 @@ public class Table implements WhatNaming {
     }
 
     public void giveFood() {
-        if (cook.status == Status.ACT && cook.isFinish()) {
+        if (cook != null && cook.status == Status.ACT && cook.isFinish()) {
             sitGuest.act();
             cook.init();
             cook = null;
@@ -60,7 +64,7 @@ public class Table implements WhatNaming {
     }
 
     public void finishClean() {
-        if (cleaner.status == Status.ACT && cleaner.isFinish()) {
+        if (cleaner != null && cleaner.status == Status.ACT && cleaner.isFinish()) {
             cleaner.init();
             isClean = true;
             cleaner = null;
@@ -69,15 +73,15 @@ public class Table implements WhatNaming {
 
     @Override
     public void addOneMinute() {
-        if (sitGuest.isActing()) {
+        if (sitGuest != null && sitGuest.isActing()) {
             sitGuest.addOneMinute();
         }
 
-        if (cook.isActing()) {
+        if (cook != null && cook.isActing()) {
             cook.addOneMinute();
         }
 
-        if (cleaner.isActing()) {
+        if (cleaner != null && cleaner.isActing()) {
             cleaner.addOneMinute();
         }
     }

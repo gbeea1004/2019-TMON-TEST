@@ -22,8 +22,8 @@ public class Restaurant {
     public int open() {
         int numberOfCustomer = 0;
         while (measureTime.isOpening()) {
-            measureTime.addOneMinute();
             visitGuests();
+            measureTime.addOneMinute();
             while (true) {
                 Table maybeTable = tables.sitOnTable();
                 if (maybeTable == null) {
@@ -75,7 +75,7 @@ public class Restaurant {
             for (Table table : tables.getTables()) {
                 table.finishClean();
             }
-            
+
             waitingRoom.addWaitingMinuteTime(); // 대기하는 사람들 1초 추가
             tables.addOneMinute();
         }

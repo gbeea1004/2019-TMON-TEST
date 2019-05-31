@@ -25,7 +25,7 @@ public class Person implements WhatNaming {
     }
 
     public boolean isFinish() {
-        if (spendTime > MAX_SPEND_TIME) {
+        if (spendTime >= MAX_SPEND_TIME) {
             init();
             return true;
         }

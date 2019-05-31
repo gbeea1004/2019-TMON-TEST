@@ -71,11 +71,11 @@ public class Restaurant {
                 }
             }
 
-            // TODO : 테이블 정리가 완료된 직후 다시 테이블을 사용할 수 있다.
+            // 테이블 정리가 완료된 직후 다시 테이블을 사용할 수 있다.
+            for (Table table : tables.getTables()) {
+                table.finishClean();
+            }
             
-
-
-
             waitingRoom.addWaitingMinuteTime(); // 대기하는 사람들 1초 추가
             tables.addOneMinute();
         }

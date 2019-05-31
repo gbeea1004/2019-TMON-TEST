@@ -59,6 +59,14 @@ public class Table implements WhatNaming {
         }
     }
 
+    public void finishClean() {
+        if (cleaner.status == Status.ACT && cleaner.isFinish()) {
+            cleaner.init();
+            isClean = true;
+            cleaner = null;
+        }
+    }
+
     @Override
     public void addOneMinute() {
         if (sitGuest.isActing()) {

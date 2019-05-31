@@ -12,6 +12,7 @@ public class WaitingRoom {
     }
 
     public void addWaitingMinuteTime() {
+        waitTooLongToLeave();
         for (Guest guest : waitingRooms) {
             guest.addOneMinute();
         }
@@ -23,5 +24,15 @@ public class WaitingRoom {
 
     public Guest leaveGuest() {
         return waitingRooms.poll();
+    }
+
+    public void waitTooLongToLeave() {
+        long countOfLeaveGuest = waitingRooms.stream()
+                .filter(g -> g.isOverWaiting())
+                .count();
+
+        for (int i = 0; i < countOfLeaveGuest; i++) {
+            waitingRooms.poll();
+        }
     }
 }

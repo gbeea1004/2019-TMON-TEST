@@ -4,6 +4,12 @@ import domain.*;
 
 import java.util.List;
 
+/*
+    < 요구사항 >
+    손님이 테이블에 앉으면 요리사는 바로 요리를 한다. (소요시간 4분)
+    손님은 식사를 한다. (소요시간 11분)
+    손님이 나가면 청소 스텝은 테이블을 정리합니다. (소요시간 3분)
+*/
 public class Restaurant {
     private MeasureTime measureTime;
     private WaitingRoom waitingRoom;
@@ -47,7 +53,7 @@ public class Restaurant {
                 table.startCook(); // 손님이 테이블에 앉으면 요리사는 바로 요리를 한다. (소요시간 4분)
             }
 
-            // 손님은 식사를 한다. (소요시간 11분)
+            // 손님에게 식사를 건낸다.
             for (Table table : tables.getTables()) {
                 table.giveFood();
             }
@@ -77,7 +83,7 @@ public class Restaurant {
             }
 
             waitingRoom.addWaitingMinuteTime(); // 대기하는 사람들 1초 추가
-            tables.addOneMinute();
+            tables.addOneMinute(); // 테이블에 앉은 손님과 테이블 담당자들 1초 추가
         }
         return numberOfCustomer;
     }

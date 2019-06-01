@@ -1,6 +1,6 @@
 ## 표괴물 사전 과제
 
-#### 1차 PeedBack (feat.도비, 노리, 레드)
+#### 1차 FeedBack
 
 1. return true false + if 없애기
 2. continue; break; return 없애기

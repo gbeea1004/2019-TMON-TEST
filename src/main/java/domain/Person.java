@@ -5,9 +5,13 @@ public class Person implements WhatNaming {
     Status status;
     int spendTime;
 
-    Person(int MAX_SPEND_TIME) {
+    // 숙련도 : '0 ~ MAX - 1' 까지 가능
+    Person(int MAX_SPEND_TIME, int proficiency) {
+        if (MAX_SPEND_TIME - proficiency <= 0) {
+            throw new IllegalArgumentException("숙련도를 잘못 입력하셨습니다.");
+        }
         init();
-        this.MAX_SPEND_TIME = MAX_SPEND_TIME;
+        this.MAX_SPEND_TIME = MAX_SPEND_TIME - proficiency;
     }
 
     public void init() {

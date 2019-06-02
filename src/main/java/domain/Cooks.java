@@ -9,12 +9,12 @@ import static domain.Constraint.MIN;
 public class Cooks {
     private List<Cook> cooks = new ArrayList<>();
 
-    public Cooks(int countOfCook) {
+    public Cooks(int countOfCook, int proficiency) {
         if (MIN > countOfCook || countOfCook > MAX_COOKS) {
             throw new IllegalArgumentException("요리사의 수를 정확히 입력하세요.");
         }
         for (int i = 0; i < countOfCook; i++) {
-            cooks.add(new Cook());
+            cooks.add(new Cook(proficiency));
         }
     }
 

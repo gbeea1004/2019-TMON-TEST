@@ -16,12 +16,18 @@ public class RestaurantFormView {
 
     public static Cooks inputCountOfCook(Scanner scanner) {
         System.out.print("요리사 수 : ");
-        return new Cooks(Conversion.toInt(scanner.nextLine()));
+        int countOfCook = Conversion.toInt(scanner.nextLine());
+        System.out.print("요리사의 숙련도 : ");
+        int proficiency = Conversion.toInt(scanner.nextLine());
+        return new Cooks(countOfCook, proficiency);
     }
 
     public static Cleaners inputCountOfCleaningStaff(Scanner scanner) {
         System.out.print("청소 스탭 수 : ");
-        return new Cleaners(Conversion.toInt(scanner.nextLine()));
+        int countOfCleaner = Conversion.toInt(scanner.nextLine());
+        System.out.print("청소 스탭의 숙련도 : ");
+        int proficiency = Conversion.toInt(scanner.nextLine());
+        return new Cleaners(countOfCleaner, proficiency);
     }
 
     public static Tables inputCountOfTable(Scanner scanner) {

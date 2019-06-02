@@ -1,5 +1,4 @@
 import controller.Restaurant;
-import domain.Cooks;
 import view.RestaurantResultView;
 
 import java.util.Scanner;

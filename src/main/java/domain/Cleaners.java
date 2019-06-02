@@ -9,12 +9,12 @@ import static domain.Constraint.MIN;
 public class Cleaners {
     private List<Cleaner> cleaners = new ArrayList<>();
 
-    public Cleaners(int countOfCleaner) {
+    public Cleaners(int countOfCleaner, int proficiency) {
         if (MIN > countOfCleaner || countOfCleaner > MAX_CLEANERS) {
             throw new IllegalArgumentException("청소 스탭의 수를 정확히 입력하세요.");
         }
         for (int i = 0; i < countOfCleaner; i++) {
-            cleaners.add(new Cleaner());
+            cleaners.add(new Cleaner(proficiency));
         }
     }
 
